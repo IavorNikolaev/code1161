@@ -37,3 +37,5 @@ def exampleGuessingGame():
 
 if __name__ == "__main__":
     exampleGuessingGame()
+    #that was inspiring 
+    
