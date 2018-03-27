@@ -14,7 +14,7 @@ def loop_ranger(start, stop=None, step=1):
     """
     ls = []
     count = start
-    while count <= stop: 
+    while count < stop: 
         ls.append(count)
         count = count + step
     return ls
@@ -58,10 +58,9 @@ def stubborn_asker(low, high):
     """
     keep_asking = True
     while keep_asking == True:
-        Vn = None
-        Vstr = input("give a number between " + str(low) + " and " + str(high) + "  :") 
+        Vstr = input("give me a number between " + str(low) + " and " + str(high) + "  :") 
         try:
-            Vn = float(Vstr)
+            Vn = int(Vstr)
             if Vn >= low and Vn <= high:
                 keep_asking = False 
             else:
@@ -84,7 +83,6 @@ def not_number_rejector(message):
     """
     keep_asking = True
     while keep_asking == True:
-        Vn = None
         Vstr = input("give a number:") 
         try:
             Vn = float(Vstr)
@@ -92,7 +90,7 @@ def not_number_rejector(message):
         except:
             keep_asking = True  
 
-    return "correct"  
+    return Vn 
 
 
 def super_asker(low, high):
@@ -114,7 +112,7 @@ def super_asker(low, high):
         except:
             keep_asking = True 
 
-    return "correct" 
+    return str(Vn) + ": is correct" 
 
 
 if __name__ == "__main__":
