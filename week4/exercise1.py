@@ -37,9 +37,12 @@ def get_some_details():
     json_data = open(LOCAL + "/lazyduck.json").read()
 
     data = json.loads(json_data)
-    return {"lastName":       None,
-            "password":       None,
-            "postcodePlusID": None
+    postcode = data["results"][0]["location"]["postcode"]
+    id_ = data["results"][0]["id"]["value"]
+    id_ = int(id_)
+    return {"lastName": data["results"][0]["name"]["last"],
+            "password": data["results"][0]["login"]["password"],
+            "postcodePlusID": postcode + id_
             }
 
 
@@ -79,7 +82,29 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &minLength=
     """
-    pass
+
+    #r = requests.get('http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&minLength=10&maxLength=10&limit=1')
+    #r_json = r.json()
+    word_list = []
+    lenght = 3 
+    while lenght < 20:
+        r = requests.get('http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&minLength=' + str(lenght) + '&maxLength=' + str(lenght) + '&limit=1') 
+        r_json = r.json()
+        word = r_json[0]["word"]
+        word_list.append(word)
+        lenght = lenght + 2
+    
+    while lenght >= 3: 
+        r = requests.get('http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&minLength=' + str(lenght) + '&maxLength=' + str(lenght) + '&limit=1') 
+        r_json = r.json()
+        word = r_json[0]["word"]
+        word_list.append(word)
+        lenght = lenght - 2
+
+    return word_list
+
+
+    
 
 
 def wunderground():
@@ -122,7 +147,16 @@ def diarist():
     TIP: remember to commit 'lasers.pew' and push it to your repo, otherwise
          the test will have nothing to look at.
     """
-    pass
+    laser_pew = open('Trispokedovetiles(laser).gcode', 'r')
+    count = 0  
+    for line in laser_pew:
+        if "M10 P1" in line:
+            count = count + 1 
+    laser_pew.close()
+
+    laser_pew_txt = open('laser.pew', 'w')
+    laser_pew_txt.write(str(count)) 
+    laser_pew_txt.close()  
 
 
 if __name__ == "__main__":
