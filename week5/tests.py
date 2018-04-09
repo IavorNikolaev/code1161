@@ -338,4 +338,5 @@ def theTests(path_to_code_to_check="."):
 
 
 if __name__ == "__main__":
-    theTests()
+    theTests() 
+    #1

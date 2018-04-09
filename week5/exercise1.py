@@ -68,7 +68,7 @@ def triangle(base,height):
 # It should say something different in the last message.
 def countdown(message, start, stop, completion_message):
     countdown = start
-    for x in range(start,stop):
+    for x in range(stop,start):
         print(message + str(countdown))
         countdown = countdown - 1
     print (completion_message) 
@@ -89,30 +89,32 @@ def calculate_hypotenuse(base, height):
 
 
 def calculate_area(base, height):
-    base * height / 2
+    area = base * height / 2
     return(area)
 
 
 def calculate_perimeter(base, height):
     prim = base + height + calculate_hypotenuse(base, height)
-    return(calculate_perimeter)
+    return(prim)
 
 
 def calculate_aspect(base, height):
-    half = (base + height + calculate_hypotenuse(base, height) / 2
-    Aspec = base + height + calculate_hypotenuse(base, height) / 8 * (half - base)  * (half - height) * (half - calculate_hypotenuse(base, height))
+    hy = calculate_hypotenuse(base, height)
+    half = (base + height + hy) / 2
+    Aspec = (base + height + hy) / (8 * (half - base) * (half - height) * (half - hy)) 
+    return(Aspec)
 
 
 # Make sure you reuse the functions you've already got
 # Don't reinvent the wheel
 def get_triangle_facts(base, height, units="mm"):
-    return {"area": None,
-            "perimeter": None,
-            "height": None,
-            "base": None,
-            "hypotenuse": None,
-            "aspect": None,
-            "units": None}
+    return {"area": calculate_area(base,height),
+            "perimeter": calculate_perimeter(base,height),
+            "height": height,
+            "base": base,
+            "hypotenuse": calculate_hypotenuse(base,height),
+            "aspect": calculate_aspect(base,height),
+            "units":units}
 
 
 # this should return a multi line string that looks a bit like this:
