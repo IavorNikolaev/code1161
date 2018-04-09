@@ -1,3 +1,4 @@
+import math 
 # -*- coding: UTF-8 -*-
 """Refactoring.
 
@@ -20,36 +21,57 @@ you'll need to figure out for yourself what to do.
 # much better job of what it's trying to do. Once you've has a little look,
 # move on, and eventually delete this function. (And this comment!)
 def do_bunch_of_bad_things():
-    print("Getting ready to start in 9")
-    print("Getting ready to start in 8")
-    print("Getting ready to start in 7")
-    print("Getting ready to start in 6")
-    print("Getting ready to start in 5")
-    print("Getting ready to start in 4")
-    print("Getting ready to start in 3")
-    print("Getting ready to start in 2")
-    print("Getting ready to start in 1")
-    print("Let's go!")
+    countdown = 9
+    for x in range(9):
+        print("Getting ready to start in" + str(countdown))
+        countdown = countdown - 1
+    print ("let's go!")
 
-    triangle = {"base": 3, "height": 4}
-    triangle["hypotenuse"] = triangle["base"]**2 + triangle["height"]**2
-    print("area = " + str((triangle["base"] * triangle["height"])/2))
-    print("side lengths are:")
-    print("base: {}".format(triangle["base"]))
-    print("height: {}".format(triangle["height"]))
-    print("hypotenuse: {}".format(triangle["hypotenuse"]))
+    triangle(3,4)
+    triangle(5,6)
+    triangle(40,3) 
 
-    another_hyp = 5**2 + 6**2
-    print(another_hyp)
+    # print("Getting ready to start in 9")
+    # print("Getting ready to start in 8")
+    # print("Getting ready to start in 7")
+    # print("Getting ready to start in 6")
+    # print("Getting ready to start in 5")
+    # print("Getting ready to start in 4")
+    # print("Getting ready to start in 3")
+    # print("Getting ready to start in 2")
+    # print("Getting ready to start in 1")
+    # print("Let's go!")
+def triangle(base,height):
+    hypotenuse_ = math.sqrt(base**2 + height**2)
+    area = base * height / 2 
+    print('the base is ' + str(base))
+    print('the height is ' + str(height))
+    print('the area is ' + str(area))
+    print('the hypotenuse is ' + str(hypotenuse_)) 
 
-    yet_another_hyp = 40**2 + 30**2
-    print(yet_another_hyp)
+    # triangle = {"base": 3, "height": 4}
+    # triangle["hypotenuse"] = triangle["base"]**2 + triangle["height"]**2
+    # print("area = " + str((triangle["base"] * triangle["height"])/2))
+    # print("side lengths are:")
+    # print("base: {}".format(triangle["base"]))
+    # print("height: {}".format(triangle["height"]))
+    # print("hypotenuse: {}".format(triangle["hypotenuse"]))
+
+    # another_hyp = 5**2 + 6**2
+    # print(another_hyp)
+
+    # yet_another_hyp = 40**2 + 30**2
+    # print(yet_another_hyp)
 
 
 # return a list of countdown messages, much like in the bad function above.
 # It should say something different in the last message.
 def countdown(message, start, stop, completion_message):
-    pass
+    countdown = start
+    for x in range(start,stop):
+        print(message + str(countdown))
+        countdown = countdown - 1
+    print (completion_message) 
 
 
 # TRIANGLES
@@ -62,19 +84,23 @@ def countdown(message, start, stop, completion_message):
 # The stub functions are made for you, and each one is tested, so this should
 # hand hold quite nicely.
 def calculate_hypotenuse(base, height):
-    pass
+    hypotenuse_ = math.sqrt(base**2 + height**2)
+    return(hypotenuse_)
 
 
 def calculate_area(base, height):
-    pass
+    base * height / 2
+    return(area)
 
 
 def calculate_perimeter(base, height):
-    pass
+    prim = base + height + calculate_hypotenuse(base, height)
+    return(calculate_perimeter)
 
 
 def calculate_aspect(base, height):
-    pass
+    half = (base + height + calculate_hypotenuse(base, height) / 2
+    Aspec = base + height + calculate_hypotenuse(base, height) / 8 * (half - base)  * (half - height) * (half - calculate_hypotenuse(base, height))
 
 
 # Make sure you reuse the functions you've already got
