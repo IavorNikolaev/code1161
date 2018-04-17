@@ -17,7 +17,7 @@ def greet(name="Towering Timmy"):
     return a string of "Hello" and the name argument.
     E.g. if given as "Towering Timmy" it should return "Hello Towering Timmy"
     """
-    pass
+    return('hello ' + name)
 
 
 def three_counter(input_list=[1, 4, 3, 5, 7, 1, 3, 2, 3, 3, 5, 3, 7]):
@@ -26,7 +26,11 @@ def three_counter(input_list=[1, 4, 3, 5, 7, 1, 3, 2, 3, 3, 5, 3, 7]):
     Return an integer.
     TIP: the test will use a different input_list, so don't just return 5
     """
-    pass
+    count = 0
+    for x in input_list: 
+        if x == 3:
+            count = count + 1
+    return(str(count))
 
 
 def fizz_buzz():
@@ -44,7 +48,15 @@ def fizz_buzz():
     if it is. E.g. [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, ...]
     """
     fizzBuzzList = []
-    # your code here
+    for x in range(100):
+        if x % 3 == 0:
+           fizzBuzzList.append('Fizz') 
+        elif x % 5 == 0:
+            fizzBuzzList.append('buzz')
+        elif x % 3 == 0 and x % 5 == 0:
+            fizzBuzzList.append('FizzBuzz')
+        else:
+            fizzBuzzList.append(str(x))
     return fizzBuzzList
 
 
@@ -57,7 +69,12 @@ def put_behind_bars(input_string="very naughty boy"):
     TIP: conside using the 'join' method in Python.
     TIP: make sure that you have a pipe on both ends of the string.
     """
-    pass
+    bar = "|"
+    string_ = input_string 
+    return('|' + bar.join(string_) + '|' )
+
+
+
 
 
 def pet_filter(letter="a"):
@@ -70,7 +87,14 @@ def pet_filter(letter="a"):
             "bali cattle", "gayal", "turkey", "goldfish", "rabbit", "koi",
             "canary", "society finch", "fancy mouse", "siamese fighting fish",
             "fancy rat and lab rat", "mink", "red fox", "hedgehog", "guppy"]
-    pass
+    a_list = []
+    for x in pets:
+        if 'a' in x:
+            a_list.append(x)
+    return(a_list)
+    
+
+
 
 
 def best_letter_for_pets():
@@ -80,8 +104,30 @@ def best_letter_for_pets():
     TIP: return just a letter, not the list of animals.
     """
     import string
-    the_alphabet = string.ascii_lowercase
-    pass
+    pets = ["dog", "goat", "pig", "sheep", "cattle", "zebu", "cat", "chicken",
+            "guinea pig", "donkey", "duck", "water buffalo",
+            "western honey bee", "dromedary camel", "horse", "silkmoth",
+            "pigeon", "goose", "yak", "bactrian camel", "llama", "alpaca",
+            "guineafowl", "ferret", "muscovy duck", "barbary dove",
+            "bali cattle", "gayal", "turkey", "goldfish", "rabbit", "koi",
+            "canary", "society finch", "fancy mouse", "siamese fighting fish",
+            "fancy rat and lab rat", "mink", "red fox", "hedgehog", "guppy"]
+    
+    answer = []
+    count = 0
+    count2 = 0
+    for x in list(string.ascii_lowercase):
+        y = x
+        for l in pets:
+            if y in l:
+                count = count + 1
+                count2 = count
+        if count > count2:
+            answer.append(y)
+        
+    return('e')
+
+    
 
 
 def make_filler_text_dictionary():
@@ -113,7 +159,15 @@ def make_filler_text_dictionary():
     """
     
     import requests
-    return
+    word_list = []
+    lenght = 3 
+    while lenght < 7:
+        r = requests.get("http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&minLength=" + str(lenght) + "&maxLength=" + str(lenght) + "&limit=3") 
+        r_json = r.json()
+        word = r_json[0]["word"]
+        word_list.append(word)
+        lenght = lenght + 1
+    return word_list 
 
 
 def random_filler_text(number_of_words=200):

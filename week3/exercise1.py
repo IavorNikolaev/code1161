@@ -134,3 +134,9 @@ if __name__ == "__main__":
     super_asker(33, 42)
 
     #change
+
+def stubournasker(high, low)
+
+    keepasking = True
+    while keepasking == True 
+        hi = imput()
